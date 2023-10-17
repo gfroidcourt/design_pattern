@@ -1,43 +1,33 @@
 package boulangerie;
 
-public class GateauBuilder {
-    private Gateau gateau;
+public abstract class GateauBuilder {
+    protected Gateau gateau;
 
-    public GateauBuilder(Gateau gateau) {
-        this.gateau = gateau;
+    public GateauBuilder() {
+        gateau = null;
     }
 
-    public GateauBuilder addCremeVanille() {
-        gateau = new CremeVanille(gateau);
-        return this;
+    void addBase() {
+
     }
 
-    public GateauBuilder addChocolat() {
-        gateau = new Chocolat(gateau);
-        return this;
+    void addPrincipalIngredient() {
+
     }
 
-    public GateauBuilder addChantilly() {
-        gateau = new Chantilly(gateau);
-        return this;
+    void addOtherIngredient() {
+
     }
 
-    public GateauBuilder addNoisettes() {
-        gateau = new Noisettes(gateau);
-        return this;
-    }
+    void addToping() {
 
-    public GateauBuilder addAmandes() {
-        gateau = new Amandes(gateau);
-        return this;
-    }
-
-    public GateauBuilder addMeringue() {
-        gateau = new Meringue(gateau);
-        return this;
     }
 
     public Gateau build() {
-        return gateau;
+        addBase();
+        addPrincipalIngredient();
+        addOtherIngredient();
+        addToping();
+        return this.gateau;
     }
 }
