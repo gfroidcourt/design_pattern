@@ -4,13 +4,15 @@ public abstract class GateauFactory {
 
     protected Gateau gateau;
     
-    public static GateauFactory getFactory(String type){
-        if(type == "Choux"){
-            return new ChouxFactory();
-        } else if (type == "Tarte"){
-            return new TarteFactory();
+    public static GateauFactory getFactory(TypeGateau type){
+        switch(type){
+            case CHOUX:
+                return new ChouxFactory();
+            case TARTE:
+                return new TarteFactory();
+            default:
+                break;
         }
-
         return null;
     }
 
@@ -21,4 +23,9 @@ public abstract class GateauFactory {
     public Gateau getGateau(){
         return gateau;
     }
+
+    public static enum TypeGateau{
+        CHOUX,
+        TARTE
+    };
 }

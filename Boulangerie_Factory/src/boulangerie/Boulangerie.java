@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Boulangerie {
 
-    private static Gateau gateauBuilder(Scanner scanner, String type) {
+    private static Gateau selectionGateau(Scanner scanner, GateauFactory.TypeGateau type) {
         int choix = -1;
         String baseChoice = "";
         String topingChoice = "";
         String otherIngredient = "";
 
         switch (type) {
-            case "Choux":
+            case CHOUX:
                 System.out.println("Base");
                 System.out.println("1. Vanille");
                 System.out.println("2. Chocolat");
@@ -44,7 +44,7 @@ public class Boulangerie {
                     topingChoice = "Noisettes";
                 break;
 
-            case "Tarte":
+            case TARTE:
                 System.out.println("Base");
                 System.out.println("1. Pommes");
                 System.out.println("2. Abricots");
@@ -90,13 +90,18 @@ public class Boulangerie {
         System.out.println("2. Tarte");
         int choix = scanner.nextInt();
 
-        String type = "";
+        GateauFactory.TypeGateau type = GateauFactory.TypeGateau.CHOUX;
         if (choix == 1)
-            type = "Choux";
-        if (choix == 2)
-            type = "Tarte";
+            type = GateauFactory.TypeGateau.CHOUX;
+        else if (choix == 2)
+            type = GateauFactory.TypeGateau.TARTE;
+        else {
+            scanner.close();
+            return;
+        }
+          
 
-        Gateau gateau = gateauBuilder(scanner, type);
+        Gateau gateau = selectionGateau(scanner, type);
 
         if(gateau != null){
             System.out.println("Votre gâteau: " + gateau.getDescription() + " coûte " + gateau.getPrix());
